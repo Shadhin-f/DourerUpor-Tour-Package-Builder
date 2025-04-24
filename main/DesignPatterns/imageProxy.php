@@ -22,7 +22,7 @@ class RealImage implements Image {
     
     private function loadImageFromDisk() {
         echo "Loading image: " . $this->filename . "<br>";
-        // Actual image loading logic would be here
+        sleep(10000);
     }
     
     public function display() {
@@ -45,7 +45,7 @@ class RealBackgroundImage implements BackgroundImage {
     
     private function loadImageFromDisk() {
         echo "Loading background image: " . $this->filename . "<br>";
-        // Actual image loading logic would be here
+        sleep(10000);
     }
     
     public function getDataBgAttribute() {

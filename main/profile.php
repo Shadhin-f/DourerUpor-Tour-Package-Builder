@@ -76,7 +76,7 @@ function getFollowedPackages($conn, $userId) {
 // }
 
 
-function getUserNotifications($conn, $userId, $limit = 5) {
+function getUserNotifications($conn, $userId, $limit = 10) {
     $limit = (int)$limit; // Sanitize to ensure it's an integer
 
     $query = "SELECT n.id, n.message, n.created_at, n.is_read, n.package_id

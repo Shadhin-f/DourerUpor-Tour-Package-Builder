@@ -1,28 +1,7 @@
 <?php
 // PackageBuilder.php
-// Abstract Builder Class
-abstract class PackageBuilder
-{
-    protected $package;
-    public function __construct()
-    {
-        $this->package = new Package();
-    }
-    abstract public function addName($name);
-    abstract public function addDestinations($destinations);
-    abstract public function addMoneySaved($moneySaved);
-    abstract public function addDayCount($dayCount);
-    abstract public function addPickup($pickup);
-    abstract public function addTransportType($transportType);
-    abstract public function addTransportCost($transportCost);
-    abstract public function addDetails($details);
-    abstract public function addImage($image);
-    public function getPackage()
-    {
-        return $this->package;
-    }
-}
-// Product Class
+
+// Product Class ----Sandwich
 class Package
 {
     public $name;
@@ -35,12 +14,37 @@ class Package
     public $details;
     public $image;
 }
+
+// Abstract Builder Class
+abstract class PackageBuilder
+{
+    protected $package;
+    public function __construct()
+    {
+        $this->package = new Package(); //creating new package obj and storing it to the package variable //new fresh package
+
+    }
+    abstract public function addName($name);
+    abstract public function addDestinations($destinations);
+    abstract public function addMoneySaved($moneySaved);
+    abstract public function addDayCount($dayCount);
+    abstract public function addPickup($pickup);
+    abstract public function addTransportType($transportType);
+    abstract public function addTransportCost($transportCost);
+    abstract public function addDetails($details);
+    abstract public function addImage($image);
+    public function getPackage()
+    {
+        return $this->package; // Return the final package object
+    }
+}
+
 // Concrete Builder for Tour Package
 class TourPackageBuilder extends PackageBuilder
 {
     public function addName($name)
     {
-        $this->package->name = $name;
+        $this->package->name = $name; //accesing 'name' of package and assigning 
     }
     public function addDestinations($destinations)
     {
@@ -75,14 +79,19 @@ class TourPackageBuilder extends PackageBuilder
         $this->package->image = $image;
     }
 }
-// Director Class
+// Director Class, which controls the building process
 class PackageDirector
 {
     private $builder;
-    public function __construct(PackageBuilder $builder)
+    public function __construct(PackageBuilder $builder) //parameter must be a class that inherits from PackageBuilder
+
     {
         $this->builder = $builder;
     }
+
+    //receives a builder like packagebuilder
+    //store that builder
+    //will use the bulder to build
     
     // Method for building a full package with all details
     public function buildFullPackage($name, $destinations, $moneySaved, $dayCount, $pickup, $transportType, $transportCost, $details, $image)
